@@ -60,6 +60,6 @@ class ShopController extends Controller
             return $this->sendResponse(code: $exception->getCode(), message: $exception->getMessage());
         }
 
-        return $this->sendResponse(data: null);
+        return $this->sendResponse();
     }
 }

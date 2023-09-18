@@ -5,6 +5,7 @@ namespace App\Services;
 use App\DataObjects\Shop\CreateOrUpdateShopDto;
 use App\Filters\Shop\ShopFilter;
 use App\Filters\QueryFilter;
+use App\Http\Resources\ShopCollection;
 use App\Http\Resources\ShopResource;
 use App\Models\Shop;
 use Illuminate\Database\Eloquent\Builder;
@@ -35,13 +36,13 @@ class ShopService
 
     /**
      * @param ShopFilter $filter
-     * @return AnonymousResourceCollection
+     * @return ShopCollection
      */
-    public function getShops(ShopFilter $filter): AnonymousResourceCollection
+    public function getShops(ShopFilter $filter): ShopCollection
     {
         $shops = $this->getByFilter($filter)->paginateFilter();
 
-        return ShopResource::collection($shops);
+        return ShopCollection::make($shops);
     }
 
     /**

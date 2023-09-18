@@ -5,6 +5,7 @@ namespace App\Services;
 use App\DataObjects\Merchant\CreateOrUpdateMerchantDto;
 use App\Filters\Merchant\MerchantFilter;
 use App\Filters\QueryFilter;
+use App\Http\Resources\MerchantCollection;
 use App\Http\Resources\MerchantResource;
 use App\Models\Merchant;
 use Illuminate\Database\Eloquent\Builder;
@@ -36,7 +37,7 @@ class MerchantService
     {
         $merchants = $this->getByFilter($filter)->paginateFilter();
 
-        return MerchantResource::collection($merchants);
+        return MerchantCollection::make($merchants);
     }
 
     /**
